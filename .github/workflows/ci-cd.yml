@@ -29,8 +29,8 @@ jobs:
           context: ./AnonyQuest
           push: true
           tags: |
-            pedrohenriquemoreiram/Backend-devops.git
-            pedrohenriquemoreiram/Backend-devops.git:${{ github.sha }}
+            pedrohenriquesc/backend
+            pedrohenriquesc/backend:${{ github.sha }}
 
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v2
