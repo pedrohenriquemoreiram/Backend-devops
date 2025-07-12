@@ -44,10 +44,10 @@ jobs:
         run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
-          git commit -am "Update kustomization.yaml with new image"
+          git commit -am "Update kustomization.yaml with new image" || echo "Nada para commitar"
 
       - name: Push changes
-  uses: ad-m/github-push-action@master
-  with:
-    github_token: ${{ secrets.GH_TOKEN_PUSH }}
-    branch: main
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN_PUSH }}
+          branch: main
