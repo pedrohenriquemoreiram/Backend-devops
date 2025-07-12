@@ -26,10 +26,10 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: backend
+          context: .
           push: true
           tags: |
-            pedrohenriquesc/backend
+            pedrohenriquesc/backend:latest
             pedrohenriquesc/backend:${{ github.sha }}
 
       - name: Setup Kustomize
@@ -38,7 +38,7 @@ jobs:
       - name: Update kustomization.yaml
         run: |
           cd k8s
-          kustomize edit set image pedrohenriquemoreiram/Backend-devops.git:$GITHUB_SHA
+          kustomize edit set image packer-vagrant-virtualbox-main=pedrohenriquesc/backend:$GITHUB_SHA
 
       - name: Commit changes
         run: |
@@ -49,5 +49,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.github_token }}
           branch: ${{ github.ref }}
