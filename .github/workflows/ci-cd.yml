@@ -42,13 +42,15 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN_PUSH }}@github.com/pedrohenriquemoreiram/Backend-devops.git
           git add k8s/kustomization.yaml
-          git commit -am "Update kustomization.yaml with new image"
+          git commit -m "Update kustomization.yaml with new image" || echo "No changes to commit"
+          git push origin main
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN_PUSH }}
           branch: ${{ github.ref }}
