@@ -17,3 +17,6 @@ spec:
           image: pedrohenriquesc/backend
           ports:
             - containerPort: 8181
+          env:
+            - name: DATABASE_URL
+              value: postgresql://admin:admin123@postgres:5432/meubanco
