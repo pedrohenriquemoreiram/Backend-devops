@@ -1,0 +1,53 @@
+# Backend DevOps - FastAPI + PostgreSQL
+
+Este repositório contém a aplicação backend desenvolvida com [FastAPI](https://fastapi.tiangolo.com/) que realiza a conexão com um banco de dados PostgreSQL dentro de um cluster Kubernetes.
+
+## 🔧 Tecnologias Utilizadas
+
+- Python 3.11
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- Docker
+- Kubernetes (com `Deployment` e `Service`)
+- ArgoCD (para GitOps)
+
+## 📦 Endpoints Disponíveis
+
+- `GET /` — Teste de conexão com o banco PostgreSQL.
+- `GET /db` — Retorna um JSON confirmando se a conexão está ativa.
+
+## ⚙️ Variáveis de Ambiente
+
+A URL de conexão com o banco deve ser fornecida pela variável `DATABASE_URL`, por exemplo: postgresql://admin:admin123@postgres:5432/meubanco
+
+## 🚀 Deploy com Kubernetes
+
+O backend é empacotado como um container Docker e implantado no Kubernetes com os seguintes arquivos:
+
+- `deployment.yaml`: Define o pod com a imagem do backend.
+- `service.yaml`: Expõe o backend via NodePort na porta `8181`.
+- `kustomization.yaml`: Gerencia os manifests para aplicar com Kustomize.
+
+### 🔁 Aplicar no cluster:
+
+```bash
+kubectl apply -k k8s/
+
+docker build -t pedrohenriquesc/backend .
+docker push pedrohenriquesc/backend
+kubectl rollout restart deployment backend
+
+
+
+### CORS ATIVADO
+allow_origins=["http://192.168.1.60:8282"]
+
+
+📂 Organização
+├── k8s/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── kustomization.yaml
+├── Dockerfile
+├── main.py
