@@ -1,8 +1,16 @@
 from fastapi import FastAPI
 import os
 from sqlalchemy import create_engine, text
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ou ["http://192.168.1.60:8282"] se quiser mais seguro
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Pega a variável do deployment
 DATABASE_URL = os.getenv("DATABASE_URL")
