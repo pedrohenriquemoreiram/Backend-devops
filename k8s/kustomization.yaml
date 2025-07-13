@@ -9,4 +9,4 @@ images:
   newTag: c58b625834eb8b45c0d3d3b45ba4cbc288fc5146
 - name: packer-vagrant-virtualbox-main
   newName: pedrohenriquesc/backend
-  newTag: f6383bfbcc3245feceec4294cd54120413d6baa2
+  newTag: a019d09465d4da5d64a3269242654d83f4f60e8c
