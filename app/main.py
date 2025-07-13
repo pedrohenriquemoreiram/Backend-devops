@@ -12,9 +12,9 @@ def check_db():
     try:
         conn = psycopg2.connect(
             host="postgres",
-            user="postgres",
-            password="postgres",
-            dbname="postgres"
+            user="admin",
+            password="admin123",
+            dbname="meubanco"
         )
         conn.close()
         return {"status": "connected to PostgreSQL"}
