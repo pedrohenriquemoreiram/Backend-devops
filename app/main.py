@@ -18,7 +18,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 # Cria engine de conexão com o banco
 engine = create_engine(DATABASE_URL, echo=True)
 
-@app.get("/")
+@app.get("/db")
 def read_root():
     try:
         with engine.connect() as connection:
